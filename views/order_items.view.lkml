@@ -9,11 +9,13 @@ view: order_items {
   }
   dimension: inventory_item_id {
     type: number
+    primary_key: yes
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
   }
   dimension: order_id {
     type: number
+    primary_key: yes
     # hidden: yes
     sql: ${TABLE}.order_id ;;
   }
@@ -21,21 +23,22 @@ view: order_items {
     type: string
     sql: ${TABLE}.phone ;;
   }
-  dimension: phones {
-    type: string
-    sql: ${TABLE}.phones ;;
-  }
-  dimension_group: returned {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.returned_at ;;
-  }
-  dimension: sale_price {
-    type: number
-    sql: ${TABLE}.sale_price ;;
-  }
-  measure: count {
-    type: count
-    drill_fields: [id, orders.id, inventory_items.id]
-  }
+  # dimension: phones {
+  #   primary_key: yes
+  #   type: string
+  #   sql: ${TABLE}.phones ;;
+  # }
+  # dimension_group: returned {
+  #   type: time
+  #   timeframes: [raw, time, date, week, month, quarter, year]
+  #   sql: ${TABLE}.returned_at ;;
+  # }
+  # dimension: sale_price {
+  #   type: number
+  #   sql: ${TABLE}.sale_price ;;
+  # }
+  # measure: count {
+  #   type: count
+  #   drill_fields: [id, orders.id, inventory_items.id]
+  # }
 }
